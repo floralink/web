@@ -7,7 +7,7 @@
             <img src="../assets/logo.png" />
             <p id="name">Floralink</p>
           </router-link>
-          <p id="version">Beta v1</p>
+          <p id="version">Beta v1.0</p>
         </td>
         <td class="right">
           <router-link to="/report">Abfrage</router-link>

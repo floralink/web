@@ -60,22 +60,21 @@ export default {
     },
   },
   mounted() {
-    const isOverflown = ({
-      clientWidth,
-      clientHeight,
-      scrollWidth,
-      scrollHeight,
-    }) => {
-      this.realWidth = clientWidth;
-      this.clientHeight = clientHeight;
-      this.scrollWidth = scrollWidth;
-      this.scrollHeight = scrollHeight;
-
-      return scrollHeight > clientHeight || scrollWidth > this.realWidth;
-    };
-    if (isOverflown(this.$refs.thisTable.parentElement)) {
-      this.$refs.thisTable.style.cursor = "e-resize";
-    }
+    // const isOverflown = ({
+    //   clientWidth,
+    //   clientHeight,
+    //   scrollWidth,
+    //   scrollHeight,
+    // }) => {
+    //   this.realWidth = clientWidth;
+    //   this.clientHeight = clientHeight;
+    //   this.scrollWidth = scrollWidth;
+    //   this.scrollHeight = scrollHeight;
+    //   return scrollHeight > clientHeight || scrollWidth > this.realWidth;
+    // };
+    // if (isOverflown(this.$refs.thisTable.parentElement)) {
+    //   this.$refs.thisTable.style.cursor = "e-resize";
+    // }
   },
   methods: {
     getTableToCSVBlob() {

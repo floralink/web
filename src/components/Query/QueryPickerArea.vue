@@ -26,7 +26,7 @@
       <InfoBox showTitle="false">
         Gib den gewünschten MTB-Quadranten im Format '1234/123' an. Die
         Auflösung reicht bis 1/64-Quadranten. Die Ziffern nach dem Schrägstrich
-        kodieren die Position der Quadranten. (1: NW, 2: NO, 3: SO, 4: SW).
+        kodieren die Position der Quadranten. (1: NW, 2: NO, 3: SW, 4: SO).
       </InfoBox>
     </template>
 

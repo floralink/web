@@ -19,7 +19,7 @@
     </tr>
     <tr>
       <th>Datenquelle</th>
-      <td>{{ occurrenceDataPlugins[query.dataProviderID].title }}</td>
+      <td>Flora-MV</td>
     </tr>
     <tr>
       <th>Stand der Abfrage</th>

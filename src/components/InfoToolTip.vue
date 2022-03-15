@@ -36,6 +36,7 @@ img {
   width: 100%;
   height: 100%;
   cursor: pointer;
+  transition: 0.2s;
   /* filter: brightness(0); */
 }
 

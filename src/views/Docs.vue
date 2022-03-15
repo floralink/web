@@ -5,35 +5,42 @@
     eine Abfrage sind das zu untersuchende Gebiet und der zu untersuchende
     Zeitraum. Die Quelle für die Erfassungsdaten ist die Floristische Datenbank
     Mecklenburg-Vorpommern (Flora-MV) mittels der WerBeo-API.
-    <br /><br />
-    Das Gebiet kann in Form eines Blattschnitts der amtlichen Topografischen
-    Karten Deutschlands im Maßstab 1:25.000 (TK25) angegeben werden. Die
-    Auflösung reicht von einem TK25-Blattschnitt bis zu 1/64-Quadranten dessen.
-    Bei der höchsten Auflösung (1/64 TK25) entspricht die Untersuchungsfläche -
-    je nach Lage in Deutschland - einer Fläche durchschnittlich etwa 2,1 km².
-    <br /><br />
-    Für die Eingrenzung des Zeitraums werden zwei Jahreszahlen angegeben (von
-    einschließlich, bis einschließlich). Es wird ein Fehler angezeigt, wenn die
-    Daten vertauscht sind ("von" liegt nach "bis") oder der Zeitraum zu groß
-    gewählt ist (> 30 Jahre).
-    <br /><br />
-    Du hast die Möglichkeit ein weiteres Gebiet oder einen weiteren Zeitraum zum
-    Vergleich anzugeben. Für die Kombination der Kriterien wird jeweils ein
-    eigener Bericht angefertigt. Ist alles wie gewünscht eingestellt, klickst du
-    auf "Abfrage durchführen" und der Bericht wird geladen.
+    <InfoBox title="Gebiet">
+      Das Gebiet kann in Form eines Blattschnitts der amtlichen Topografischen
+      Karten Deutschlands im Maßstab 1:25.000 (TK25) angegeben werden. Die
+      Auflösung reicht von einem TK25-Blattschnitt bis zu 1/64-Quadranten
+      dessen. Die Ziffern nach dem Schrägstrich kodieren die Position der
+      Quadranten. (1: NW, 2: NO, 3: SW, 4: SO). Bei der höchsten Auflösung (1/64
+      TK25) entspricht die Untersuchungsfläche - je nach Lage in Deutschland -
+      einer Fläche durchschnittlich etwa 2,1 km².
+    </InfoBox>
+    <InfoBox title="Zeitraum">
+      Für die Eingrenzung des Zeitraums werden zwei Jahreszahlen angegeben (von
+      einschließlich, bis einschließlich). Es wird ein Fehler angezeigt, wenn
+      die Daten vertauscht sind ("von" liegt nach "bis") oder der Zeitraum zu
+      groß gewählt ist (> 30 Jahre).
+    </InfoBox>
+    <InfoBox title="Vergleich">
+      Du hast die Möglichkeit, ein weiteres Gebiet oder einen weiteren Zeitraum
+      zum Vergleich anzugeben. Für die Kombination der Kriterien wird jeweils
+      ein eigener Bericht angefertigt. Ist alles wie gewünscht eingestellt,
+      klickst du auf "Abfrage durchführen" und der Bericht wird geladen.
+    </InfoBox>
   </LayoutPanel>
 
   <LayoutPanel title="Erfassungsdaten" sizing="small">
     In der Berichtsansicht wird zunächst eine Übersicht der gestellten Abfrage
-    in einer Tabelle dargestellt (Abb. 8). Darauf folgt eine Tabelle mit
-    Kenngrößen zu den erhaltenen Ergebnissen: die Anzahl der Erfassungen und der
-    verschiedenen Taxa sowie die Zeitspanne der Erfassungen (erstes und letzes
-    Datum). Eine Gesamtliste der vorkommenden Taxa für die gewählten
-    Untersuchungskriterien findet sich am Ende des Berichts. Für jedes Taxon
-    sind außerdem Erfassungsstatistiken (Anzahl der Erfassungen, ältestes und
-    jüngstes Datum der Erfassung) und die jeweiligen taxonspezifischen Daten
-    angegeben. Die Liste der vorkommenden Taxa dient als Basis für alle
-    folgenden Berechnungen.
+    in einer Tabelle dargestellt. Darauf folgt eine Tabelle mit Kenngrößen zu
+    den erhaltenen Ergebnissen: die Anzahl der Erfassungen und der verschiedenen
+    Taxa sowie die Zeitspanne der Erfassungen (erstes und letzes Datum).
+    <InfoBox title="Gesamtliste">
+      Eine Gesamtliste der vorkommenden Taxa für die gewählten
+      Untersuchungskriterien findet sich am Ende des Berichts. Für jedes Taxon
+      sind außerdem Erfassungsstatistiken (Anzahl der Erfassungen, ältestes und
+      jüngstes Datum der Erfassung) und die jeweiligen taxonspezifischen Daten
+      angegeben. Die Liste der vorkommenden Taxa dient als Basis für alle
+      folgenden Berechnungen.
+    </InfoBox>
   </LayoutPanel>
 
   <LayoutPanel title="Taxonspezifische Daten" sizing="small">
@@ -48,18 +55,20 @@
     durchgeführt (Lagemaße und Streuungsmaße). Welche Maße berechnet werden,
     wird auf Basis des Skalenniveaus (nominal, ordinal oder kardinal)
     entschieden (siehe Tab. 3).
-    <br /><br />
-    Die berechneten Größen werden in einer Tabelle dargestellt. Hier wird
-    zusätzlich die Anzahl der Werte angegeben, die in die Berechnungen
-    eingeflossen sind. Diese können sich für die einzelnen Felder unterscheiden:
-    Bei ordinalskalierten Daten beispielsweise können einzelne Werte auch
-    nominale Klassen ausdrücken (z. B. „keine Angabe“ oder „uneindeutig“). Diese
-    werden in der Berechnung nicht berücksichtigt.
-    <br /><br />
-    Für nominal- und ordinalskalierte Eigenschaften werden die absoluten
-    Häufigkeiten der Wertausprägungen in einem Balkendiagramm angezeigt. Für
-    ordinale Eigenschaften wie die ökologischen Zeigerwerte werden die Mediane,
-    Quartile und Ausreißer in Box-Plot-Diagrammen dargestellt.
+    <InfoBox title="Statistische Größen">
+      Die berechneten Größen werden in einer Tabelle dargestellt. Hier wird
+      zusätzlich die Anzahl der Werte angegeben, die in die Berechnungen
+      eingeflossen sind. Diese können sich für die einzelnen Felder
+      unterscheiden: Bei ordinalskalierten Daten beispielsweise können einzelne
+      Werte auch nominale Klassen ausdrücken (z. B. „keine Angabe“ oder
+      „uneindeutig“). Diese werden in der Berechnung nicht berücksichtigt.
+    </InfoBox>
+    <InfoBox title="Diagramme">
+      Für nominal- und ordinalskalierte Eigenschaften werden die absoluten
+      Häufigkeiten der Wertausprägungen in einem Balkendiagramm angezeigt. Für
+      ordinale Eigenschaften wie die ökologischen Zeigerwerte werden die
+      Mediane, Quartile und Ausreißer in Box-Plot-Diagrammen dargestellt.
+    </InfoBox>
   </LayoutPanel>
 
   <LayoutPanel title="Export" sizing="small">
@@ -74,8 +83,9 @@
 
 <script>
 import LayoutPanel from "../components/LayoutPanel.vue";
+import InfoBox from "../components/InfoBox.vue";
 
 export default {
-  components: { LayoutPanel },
+  components: { LayoutPanel, InfoBox },
 };
 </script>

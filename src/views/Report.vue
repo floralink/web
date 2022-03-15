@@ -48,7 +48,7 @@
 
 <script>
 import * as floralink from "@floralink/core";
-import * as hash from "object-hash";
+import hash from "object-hash";
 import state from "../state.js";
 
 const taxonReferencePluginID = "germansl";

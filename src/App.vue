@@ -7,7 +7,6 @@
 
 <script>
 import {
-  werbeo,
   germansl,
   ellenberg,
   fukarekhenker,
@@ -16,7 +15,6 @@ import {
 
 import state from "@/state.js";
 
-state.occurrenceDataPlugins = { werbeo };
 state.taxonReferencePlugins = { germansl };
 state.taxonSpecificPlugins = {
   ellenberg,
