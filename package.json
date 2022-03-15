@@ -11,7 +11,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@floralink/core": "^0.1.1",
+    "@floralink/core": "^0.1.2",
     "@floralink/plugins": "^0.2.0",
     "axios": "^0.25.0",
     "object-hash": "^3.0.0",
