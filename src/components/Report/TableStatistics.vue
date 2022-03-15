@@ -2,7 +2,7 @@
   <TableBase
     title="Allgemeine Kenngrößen"
     description="Kenngrößen der Abfrageergebnisse für das Untersuchungsgebiet im Zeitraum"
-    filename="statistics"
+    :filename="`report-${reportID}-occurrencestatistics`"
   >
     <tr>
       <th>Anzahl der Einzelerfassungen</th>
@@ -34,12 +34,13 @@ export default {
     reportID: {
       type: String,
       required: true,
-    }
+    },
   },
   data() {
     return {
-      occurrenceStatistics: state.reportData[this.reportID].occurrenceStatistics,
-    }
+      occurrenceStatistics:
+        state.reportData[this.reportID].occurrenceStatistics,
+    };
   },
   methods: {
     dateToString: (date) => dateToString(date),

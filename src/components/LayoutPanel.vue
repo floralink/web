@@ -1,5 +1,5 @@
 <template>
-  <div class="panel">
+  <div class="panel" :class="sizing === 'small' ? 'small' : ''">
     <h1 v-if="title !== ''">{{ title }}</h1>
     <div class="content" :class="{ flex: flex }">
       <slot />
@@ -15,6 +15,10 @@ export default {
       default: false,
     },
     title: {
+      type: String,
+      default: "",
+    },
+    sizing: {
       type: String,
       default: "",
     },
@@ -54,5 +58,11 @@ h1:first-child {
   padding: 0;
   justify-content: center;
   /* background-color: var(--grey3); */
+}
+
+.small {
+  max-width: 60vw;
+  font-family: "DejaVu Serif Condensed", "serif";
+  line-height: 150%;
 }
 </style>

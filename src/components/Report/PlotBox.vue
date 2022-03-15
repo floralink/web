@@ -1,7 +1,8 @@
 <template>
+  <h3>Box-Plots</h3>
   <PlotBase
     :title="`${plugin.title}`"
-    :description="`Boxplots: ${plugin.title} für die vorkommenden Taxa (${plugin.sources.primary.citationShort}, nach ${plugin.sources.secondary.citationShort})`"
+    :description="`Box-Plots: ${plugin.title} für die vorkommenden Taxa (${plugin.sources.primary.citationShort}, nach ${plugin.sources.secondary.citationShort})`"
     :filename="`report-${reportID}-${plugin.name}-boxplots`"
     :data="plotData"
     :layout="plotLayout"

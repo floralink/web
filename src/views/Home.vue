@@ -3,27 +3,35 @@
     <LayoutPanel>
       <h1>Willkommen bei Floralink Web!</h1>
       <InfoBox showTitle="false">
-        Floralink ist ein Online-Tool zur Analyse von floristischen
-        Kartierungen. Die Daten stammen aus dem WerBeo-Projekt (bzw. Flora-MV)
-        und werden nach den Kriterien des Gebiets und des Zeitraums abgefragt.
-        Die Ergebnisse können dann mit sippenspezifischen Daten (wie die
-        Zeigerwerte nach Ellenberg oder der Rote-Liste-Status) verknüpft werden.
-        Daraus werden automatisch statistische Größen berechnet.
+        Floralink ist ein Online-Tool zur statistischen Auswertung von
+        floristischen Kartierungen. Die Daten stammen aus dem WerBeo-Projekt
+        (bzw. Flora-MV) und werden nach den Kriterien des Gebiets und des
+        Zeitraums abgefragt. Die Ergebnisse können dann mit taxonspezifischen
+        Daten (wie die Zeigerwerte nach Ellenberg oder der Rote-Liste-Status)
+        verknüpft werden. Daraus werden Lage- und Streuungsmaße berechnet und in
+        Diagrammen visualisiert. Floralink befindet sich in der Entwicklung und
+        ist nicht ausgereift! Es darf aber gerne ausprobiert werden und
+        vielleicht lassen sich ein paar interessante Trends entdecken.
       </InfoBox>
       <div class="imgflex">
-        <img src="../assets/img/screenshot_eiv.png" />
         <img src="../assets/img/screenshot_query.png" />
+        <img src="../assets/img/screenshot_eiv.png" />
         <img src="../assets/img/screenshot_taxalist.png" />
       </div>
       <InfoBox showTitle="false">
         <div class="center">
-          <router-link to="/report" class="button"
-            >Loslegen und eine Abfrage erstellen</router-link
-          >
-          <!-- <div class="button">Report mittels ID einsehen</div> -->
-          <router-link to="/docs" class="button"
-            >Dokumentation der Anwendung</router-link
-          >
+          <router-link to="/report">
+            <div class="button">Eine Abfrage stellen</div>
+          </router-link>
+          <router-link to="/docs">
+            <div class="button">Handbuch</div>
+          </router-link>
+          <router-link to="/info">
+            <div class="button">Hintergrundwissen</div>
+          </router-link>
+          <router-link to="/sources">
+            <div class="button">Literaturhinweise</div>
+          </router-link>
         </div>
       </InfoBox>
     </LayoutPanel>

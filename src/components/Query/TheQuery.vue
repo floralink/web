@@ -1,8 +1,9 @@
 <template>
   <LayoutPanel title="Abfrage">
     <div class="center">
-      Datenquelle: Flora-MV (über WerBeo-API)
       <br />
+      Datenquelle: Flora-MV (über WerBeo-API)
+      <br /><br />
       Taxonspezifische Daten: Ellenberg-Zeigerwerte, Rote-Liste-Status MV &
       N-F-T-Status
     </div>
@@ -108,7 +109,7 @@ export default {
           {
             id: 0,
             areaFormat: "mtb",
-            areaValue: "2136/12",
+            areaValue: "2539/1",
           },
         ],
         periods: [

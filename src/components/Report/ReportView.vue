@@ -18,29 +18,33 @@
       <TableTaxaListOther :reportID="reportID" :plugins="plugins" />
     </details>
 
-    <h2>Taxonspezifische Daten</h2>
+    <div
+      v-if="state.reportData[reportID].occurrenceStatistics.uniqueTaxaCount > 5"
+    >
+      <h2>Taxonspezifische Daten</h2>
 
-    <div class="tab-container">
+      <div class="tab-container">
+        <div
+          v-for="plugin in plugins"
+          :key="plugin.info.name"
+          class="tab-button"
+          :class="{ active: isActive(plugin.info.name) }"
+          @click.prevent="setActive(plugin.info.name)"
+        >
+          {{ plugin.info.title }}
+        </div>
+      </div>
       <div
         v-for="plugin in plugins"
+        v-show="isActive(plugin.info.name)"
         :key="plugin.info.name"
-        class="tab-button"
-        :class="{ active: isActive(plugin.info.name) }"
-        @click.prevent="setActive(plugin.info.name)"
       >
-        {{ plugin.info.title }}
+        <MainPlugin
+          :reportID="reportID"
+          :plugin="plugin.info"
+          :pluginStatistics="plugin.stats"
+        />
       </div>
-    </div>
-    <div
-      v-for="plugin in plugins"
-      v-show="isActive(plugin.info.name)"
-      :key="plugin.info.name"
-    >
-      <MainPlugin
-        :reportID="reportID"
-        :plugin="plugin.info"
-        :pluginStatistics="plugin.stats"
-      />
     </div>
 
     <h2>Export</h2>
@@ -54,7 +58,7 @@
         :download="`floralysis-report-${reportID}.json`"
         >Rohdaten als JSON</a
       >
-      <p class="button" @click="printReport()">Bericht drucken</p>
+      <!-- <p class="button" @click="printReport()">Bericht drucken</p> -->
     </div>
   </div>
 </template>

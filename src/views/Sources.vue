@@ -17,8 +17,6 @@
       </InfoBox>
     </LayoutPanel>
   </template>
-
-  <h1>Lizenzhinweise</h1>
 </template>
 
 <script>
@@ -30,7 +28,10 @@ export default {
   components: { InfoBox, LayoutPanel },
   data() {
     return {
-      plugins: state.taxonSpecificPlugins,
+      plugins: {
+        ...state.taxonReferencePlugins,
+        ...state.taxonSpecificPlugins,
+      },
     };
   },
 };

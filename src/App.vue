@@ -5,6 +5,26 @@
   <TheFooter />
 </template>
 
+<script>
+import {
+  werbeo,
+  germansl,
+  ellenberg,
+  fukarekhenker,
+  rotelistemv,
+} from "@floralink/plugins";
+
+import state from "@/state.js";
+
+state.occurrenceDataPlugins = { werbeo };
+state.taxonReferencePlugins = { germansl };
+state.taxonSpecificPlugins = {
+  ellenberg,
+  fukarekhenker,
+  rotelistemv,
+};
+</script>
+
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap");
 

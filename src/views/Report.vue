@@ -18,13 +18,28 @@
       </div>
     </div>
     <LayoutPanel title="Bericht">
-      <LayoutPanel flex="true">
-        <ReportView
-          v-for="reportID in Object.keys(state.reportData)"
+      <div class="tab-container">
+        <div
+          v-for="(reportID, index) in activeReportIDs"
           :key="reportID"
-          :report-i-d="reportID"
-        />
-      </LayoutPanel>
+          class="tab-button"
+          :class="{ active: isActive(reportID) }"
+          @click.prevent="setActive(reportID)"
+        >
+          Bericht {{ index + 1 }}
+        </div>
+      </div>
+      <div
+        v-for="reportID in activeReportIDs"
+        v-show="isActive(reportID)"
+        :key="reportID"
+      >
+        <ReportView :reportID="reportID" />
+      </div>
+
+      <!-- <LayoutPanel flex="true"> -->
+
+      <!-- </LayoutPanel> -->
     </LayoutPanel>
   </template>
 
@@ -33,22 +48,10 @@
 
 <script>
 import * as floralink from "@floralink/core";
-import {
-  werbeo,
-  ellenberg,
-  fukarekhenker,
-  rotelistemv,
-} from "@floralink/plugins";
 import * as hash from "object-hash";
 import state from "../state.js";
 
-state.occurrenceDataPlugins = { werbeo };
 const taxonReferencePluginID = "germansl";
-state.taxonSpecificPlugins = {
-  ellenberg,
-  fukarekhenker,
-  rotelistemv,
-};
 
 // component imports
 import ReportView from "../components/Report/ReportView.vue";
@@ -70,6 +73,8 @@ export default {
     return {
       statusMessages: [],
       state: state,
+      activeReportID: "",
+      activeReportIDs: [],
     };
   },
   computed: {
@@ -86,6 +91,12 @@ export default {
     },
   },
   methods: {
+    isActive(id) {
+      return this.activeReportID === id;
+    },
+    setActive(id) {
+      this.activeReportID = id;
+    },
     statusMessage(msg) {
       console.log(msg);
       this.statusMessages.push(msg);
@@ -96,26 +107,51 @@ export default {
       this.statusMessages = [];
 
       // initialize / reset reportData store
-      state.reportData = {};
+      this.activeReportIDs = [];
       this.statusMessage(
         "Abfrage an WerBeo wird durchgeführt... Das kann einen Moment dauern..."
       );
 
       // request data for each query
       queries.forEach(async (query, index) => {
+        // skip query if already done earlier
+        const { ["creationDate"]: creationDate, ...newQueryWithoutDate } =
+          query;
+
+        let queryJSON = JSON.stringify(newQueryWithoutDate);
+        let uniqueQuery = Object.values(state.reportData).every((report) => {
+          const { ["creationDate"]: creationDate, ...oldQueryWithoutDate } =
+            report.occurrenceDataQuery;
+
+          // this is not great for comparing objects
+          if (JSON.stringify(oldQueryWithoutDate) === queryJSON) {
+            this.activeReportIDs.push(report.id);
+            if (index === 0) this.activeReportID = report.id;
+            this.queryCount--;
+            return false;
+          } else {
+            return true;
+          }
+        });
+
+        if (!uniqueQuery) {
+          return;
+        }
+
         // generate reportID from query object with the object-hash library
         let reportID = hash(query);
+        this.activeReportIDs.push(reportID);
+        if (index === 0) this.activeReportID = reportID;
 
         // initialize report object
         state.reportData[reportID] = {
-          occurrenceDataQuery: {},
+          id: reportID,
+          occurrenceDataQuery: query,
           taxonOccurrenceData: {},
           occurrenceStatistics: {},
           taxonOccurrenceStatistics: {},
           taxonSpecificStatistics: {},
         };
-
-        state.reportData[reportID].occurrenceDataQuery = query;
 
         // get occurrence data from WerBeo through floralink server
         let resOccurrenceData = await this.$axios.post(
@@ -194,6 +230,7 @@ export default {
                 state.taxonSpecificPlugins[taxonSpecificPlugin.name],
                 resTaxonSpecific.data
               );
+
               this.statusMessage(
                 `Statistiken für taxonspezifische Daten (${
                   taxonSpecificPlugin.name
@@ -207,3 +244,33 @@ export default {
   },
 };
 </script>
+
+<!-- generalize as component -->
+<style>
+.tab-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 40px;
+}
+.tab-button {
+  background-color: var(--green2);
+  padding: 10px;
+  margin: 5px;
+  transition: 0.2s;
+  cursor: pointer;
+  flex: 30%;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.tab-button:hover {
+  background-color: var(--green1);
+}
+
+.tab-button.active {
+  background-color: var(--grey1);
+  cursor: unset;
+  flex: 80%;
+}
+</style>

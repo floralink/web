@@ -36,7 +36,7 @@ img {
   width: 100%;
   height: 100%;
   cursor: pointer;
-  filter: brightness(0);
+  /* filter: brightness(0); */
 }
 
 img:hover {

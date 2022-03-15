@@ -40,9 +40,20 @@ const routes = [
 const router = createRouter({
   history: createWebHashHistory(), // this needs to be configured on the nginx/Apache server to work properly // old arg: process.env.BASE_URL
   routes,
-  // always scroll to top
-  scrollBehavior() {
-    return { el: "#app", top: 0, behavior: "smooth" };
+  scrollBehavior(to) {
+    if (to.hash) {
+      return {
+        el: to.hash,
+        behavior: "smooth",
+      };
+    } else {
+      // always scroll to top
+      return {
+        el: "#app",
+        top: 0,
+        behavior: "smooth",
+      };
+    }
   },
 });
 

@@ -2,7 +2,7 @@
   <TableBase
     title="Abfragekriterien"
     description="Kriterien und Metadaten der Abfrage"
-    filename="query"
+    :filename="`report-${reportID}-query`"
   >
     <tr>
       <th v-if="query.area.areaFormat === 'mtb'">TK 25 (MTB)</th>

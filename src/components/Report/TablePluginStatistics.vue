@@ -10,6 +10,7 @@
       <th></th>
       <th colspan="2">Lageparameter</th>
       <th colspan="1">Streuungsmaß</th>
+      <th></th>
     </tr> -->
 
     <tr>
@@ -19,7 +20,7 @@
       <th>Median</th>
       <!-- <th>Mittelwert<InfoToolTip :text="toolTips.average" /></th> -->
 
-      <th>Interquartilabstand</th>
+      <th>Interquartilsabstand</th>
       <!-- <th>Varianz<InfoToolTip :text="toolTips.variance" /></th>
       <th>Standardabweichung</th> -->
 

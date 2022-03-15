@@ -71,14 +71,16 @@ label {
   margin: 5px;
   padding: 10px;
   font-size: 0.8em;
+  transition: 0.2s;
 }
 label:hover {
   background-color: var(--grey1);
   cursor: pointer;
-  transition: 0.2s;
 }
 .active {
   background-color: var(--grey1);
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 label > input {

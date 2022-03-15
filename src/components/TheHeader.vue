@@ -7,12 +7,13 @@
             <img src="../assets/logo.png" />
             <p id="name">Floralink</p>
           </router-link>
+          <p id="version">Beta v1</p>
         </td>
         <td class="right">
           <router-link to="/report">Abfrage</router-link>
-          <router-link to="/docs">Dokumentation</router-link>
+          <router-link to="/docs">Handbuch</router-link>
           <router-link to="/info">Hintergrund</router-link>
-          <router-link to="/sources">Literatur</router-link>
+          <router-link to="/sources">Quellen</router-link>
         </td>
       </tr>
     </table>
@@ -27,7 +28,8 @@ header {
 }
 
 img,
-#name {
+#name,
+#version {
   display: inline-block;
   vertical-align: middle;
 }
