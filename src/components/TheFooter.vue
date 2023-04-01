@@ -4,11 +4,15 @@
     <p>
       <img id="inline-logo" src="@/assets/logo.png" /> Floralink
       &nbsp;&nbsp;&nbsp;&nbsp;
-      <a href="https://github.com/floralink/web">GitHub</a>
+      <a href="https://github.com/floralink/web">GitHub 🡭</a>
       &nbsp;•&nbsp;
       <a href="mailto:info@flora-link.de">Kontakt</a>
       &nbsp;•&nbsp;
       <router-link to="/impressum">Impressum</router-link>
+      &nbsp;•&nbsp;
+      <a href="https://docs.flora-link.de/floralink/abfrage/datenquellen/"
+        >Datenquellen 🡭</a
+      >
     </p>
   </footer>
 </template>
