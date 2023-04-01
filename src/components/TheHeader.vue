@@ -7,13 +7,12 @@
             <img src="../assets/logo.png" />
             <p id="name">Floralink</p>
           </router-link>
-          <p id="version">Beta v1.0</p>
+          <code id="version">1.0.0-alpha 2</code>
         </td>
         <td class="right">
-          <router-link to="/report">Abfrage</router-link>
-          <router-link to="/docs">Handbuch</router-link>
-          <router-link to="/info">Hintergrund</router-link>
-          <router-link to="/sources">Quellen</router-link>
+          <a href="https://docs.flora-link.de" target="_blank"
+            >Handbuch und Wissenssammlung 🡭</a
+          >
         </td>
       </tr>
     </table>
@@ -23,8 +22,12 @@
 <style scoped>
 header {
   background-color: var(--green2);
-  padding: 30px;
+  padding: 10px 30px;
   margin-bottom: 10px;
+
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 
 img,
@@ -34,13 +37,19 @@ img,
   vertical-align: middle;
 }
 
+#version {
+  font-size: 0.9em;
+  padding-left: 1em;
+  text-decoration: cod;
+}
+
 img {
-  height: 3em;
+  height: 2em;
   margin: 0.5em;
 }
 
 #name {
-  font-size: 2em;
+  font-size: 1.8em;
 }
 
 a {

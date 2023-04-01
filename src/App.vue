@@ -1,6 +1,7 @@
 <template>
   <TheHeader />
   <ButtonToTop />
+  <div id="headerspace"></div>
   <router-view />
   <TheFooter />
 </template>
@@ -68,6 +69,10 @@ body {
   margin: 0;
   background-color: var(--grey1);
   font-family: "Source Sans Pro", sans-serif;
+}
+
+#headerspace {
+  height: calc(20px + 2em);
 }
 
 details > summary {

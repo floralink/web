@@ -1,7 +1,7 @@
 {
-  "name": "@floralink/client",
+  "name": "@floralink/web",
   "private": true,
-  "version": "0.1.0",
+  "version": "1.0.0-alpha.1",
   "description": "Web application for linking and analyzing taxon specific data with plant occurrence data",
   "author": "Vincent Ruge",
   "license": "MIT",
