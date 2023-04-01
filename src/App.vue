@@ -3,6 +3,7 @@
   <ButtonToTop />
   <div id="headerspace"></div>
   <router-view />
+  <div id="footerspace"></div>
   <TheFooter />
 </template>
 
@@ -73,6 +74,10 @@ body {
 
 #headerspace {
   height: calc(20px + 2em);
+}
+
+#footerspace {
+  height: calc(20px + 1em);
 }
 
 details > summary {

@@ -24,6 +24,7 @@ header {
   background-color: var(--green2);
   padding: 10px 30px;
   margin-bottom: 10px;
+  border-bottom: 3px solid grey;
 
   position: fixed;
   top: 0;

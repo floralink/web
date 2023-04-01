@@ -23,8 +23,8 @@ export default {
 #button-top {
   display: none;
   position: fixed;
-  bottom: 2vw;
-  right: 2vw;
+  bottom: calc(20px + 3em);
+  right: 1em;
   z-index: 99;
   padding: 15px;
 
