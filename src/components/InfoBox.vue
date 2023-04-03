@@ -59,7 +59,7 @@ export default {
 <style scoped>
 .info {
   padding: 10px;
-  margin: 40px 20px;
+  margin: 20px 0px;
 }
 
 .info.error {
