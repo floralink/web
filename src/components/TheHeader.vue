@@ -7,11 +7,14 @@
             <img src="../assets/logo.png" />
             <p id="name">Floralink</p>
           </router-link>
-          <code id="version">1.0.0-alpha 2</code>
+          <code id="version">1.0.0-alpha.2</code>
         </td>
         <td class="right">
-          <a href="https://docs.flora-link.de" target="_blank"
-            >Handbuch und Wissenssammlung 🡭</a
+          <a href="https://docs.flora-link.de/wiki" target="_blank"
+            >Wissenssammlung 🡭</a
+          >
+          <a href="https://docs.flora-link.de/floralink" target="_blank"
+            >Handbuch 🡭</a
           >
         </td>
       </tr>
@@ -29,6 +32,7 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 100;
 }
 
 img,
