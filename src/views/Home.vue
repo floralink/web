@@ -1,67 +1,287 @@
 <template>
-  <div class="home">
-    <LayoutPanel>
-      <h1>Willkommen bei Floralink Web!</h1>
-      <InfoBox showTitle="false">
-        Floralink ist ein Online-Tool zur statistischen Auswertung von
-        floristischen Kartierungen. Die Daten stammen aus dem WerBeo-Projekt
-        (bzw. Flora-MV) und werden nach den Kriterien des Gebiets und des
-        Zeitraums abgefragt. Die Ergebnisse können dann mit taxonspezifischen
-        Daten (wie die Zeigerwerte nach Ellenberg oder der Rote-Liste-Status)
-        verknüpft werden. Daraus werden Lage- und Streuungsmaße berechnet und in
-        Diagrammen visualisiert. Floralink befindet sich in der Entwicklung und
-        ist nicht ausgereift! Es darf aber gerne ausprobiert werden und
-        vielleicht lassen sich ein paar interessante Trends entdecken.
-      </InfoBox>
-      <div class="imgflex">
-        <img src="../assets/img/screenshot_query.png" />
-        <img src="../assets/img/screenshot_eiv.png" />
-        <img src="../assets/img/screenshot_taxalist.png" />
+  <TheIntro />
+
+  <TheQuery
+    v-if="getStatus === 'query'"
+    id="query"
+    @performquery="getResults($event)"
+  />
+
+  <!-- STATUS MESSAGES WHILE PROCESSING QUERIES TO REPORTS -->
+  <LayoutPanel v-if="(getStatus === 'loading') | 'ready'" title="Abfrage">
+    <InfoBox showTitle="false">
+      Das kann bei der ersten Abfrage einen Moment dauern, weil der Server nach
+      15 min Inaktivität schläft und erst wieder hochfahren muss.
+    </InfoBox>
+
+    <InfoBox title="Statusmeldungen">
+      <template v-for="message in statusMessages" :key="message">
+        {{ message }}<br />
+      </template>
+    </InfoBox>
+  </LayoutPanel>
+
+  <!-- CURRENTLY ONLY LOADS COMPONENTS WHEN ALL DATA IS LOADED, NO ERROR HANDLING DOWNWARDS IF EMPTY -->
+  <template v-if="getStatus === 'ready'">
+    <div class="center">
+      <div class="button big" @click="statusMessages = []">
+        Abfrage bearbeiten
       </div>
-      <InfoBox showTitle="false">
-        <div class="center">
-          <router-link to="/report">
-            <div class="button">Eine Abfrage stellen</div>
-          </router-link>
-          <router-link to="/docs">
-            <div class="button">Handbuch</div>
-          </router-link>
-          <router-link to="/info">
-            <div class="button">Hintergrundwissen</div>
-          </router-link>
-          <router-link to="/sources">
-            <div class="button">Literaturhinweise</div>
-          </router-link>
+    </div>
+    <LayoutPanel id="report" title="Bericht">
+      <div class="tab-container">
+        <div
+          v-for="(reportID, index) in activeReportIDs"
+          :key="reportID"
+          class="tab-button"
+          :class="{ active: isActive(reportID) }"
+          @click.prevent="setActive(reportID)"
+        >
+          Bericht {{ index + 1 }}
         </div>
-      </InfoBox>
+      </div>
+      <div
+        v-for="reportID in activeReportIDs"
+        v-show="isActive(reportID)"
+        :key="reportID"
+      >
+        <ReportView :reportID="reportID" />
+      </div>
+
+      <!-- <LayoutPanel flex="true"> -->
+
+      <!-- </LayoutPanel> -->
     </LayoutPanel>
-  </div>
+  </template>
 </template>
 
 <script>
-// // @ is an alias to /src
-// import HelloWorld from "@/components/HelloWorld.vue";
+import * as floralink from "@floralink/core";
+import hash from "object-hash";
+import state from "../state.js";
 
-// export default {
-//   name: "Home",
-//   components: {
-//     HelloWorld,
-//   },
-// };
+const taxonReferencePluginID = "germansl";
+
+// import components
+import LayoutPanel from "../components/LayoutPanel.vue";
+import InfoBox from "../components/InfoBox.vue";
+import TheIntro from "../components/TheIntro.vue";
+import TheQuery from "../components/Query/TheQuery.vue";
+import ReportView from "../components/Report/ReportView.vue";
+import router from "../router";
+
+export default {
+  name: "Report",
+  components: {
+    LayoutPanel,
+    InfoBox,
+    TheIntro,
+    TheQuery,
+    ReportView,
+  },
+  data() {
+    return {
+      statusMessages: [],
+      state: state,
+      activeReportID: "",
+      activeReportIDs: [],
+    };
+  },
+  computed: {
+    getStatus() {
+      let allStatusMessagesCount =
+        this.queryCount * (2 + this.pluginCount * 2) + 1;
+      if (this.statusMessages.length === 0) {
+        return "query";
+      } else if (this.statusMessages.length >= allStatusMessagesCount) {
+        this.statusMessage(
+          "Die Erfassungen und verknüpfte Daten wurden erfolgreich abgerufen!"
+        );
+        return "ready";
+      } else {
+        return "loading";
+      }
+    },
+  },
+  methods: {
+    isActive(id) {
+      return this.activeReportID === id;
+    },
+    setActive(id) {
+      this.activeReportID = id;
+    },
+    statusMessage(msg) {
+      console.log(msg);
+      this.statusMessages.push(msg);
+    },
+    getResults(queries) {
+      this.queryCount = queries.length;
+      this.pluginCount = Object.keys(state.taxonSpecificPlugins).length;
+      this.statusMessages = [];
+
+      // initialize / reset reportData store
+      this.activeReportIDs = [];
+      this.statusMessage("Abfrage wird an WerBeo gesendet...");
+
+      // request data for each query
+      queries.forEach(async (query, index) => {
+        // skip query if already done earlier
+        const { ["creationDate"]: creationDate, ...newQueryWithoutDate } =
+          query;
+
+        let queryJSON = JSON.stringify(newQueryWithoutDate);
+        let uniqueQuery = Object.values(state.reportData).every((report) => {
+          const { ["creationDate"]: creationDate, ...oldQueryWithoutDate } =
+            report.occurrenceDataQuery;
+
+          // this is not great for comparing objects
+          if (JSON.stringify(oldQueryWithoutDate) === queryJSON) {
+            this.activeReportIDs.push(report.id);
+            if (index === 0) this.activeReportID = report.id;
+            this.queryCount--;
+            return false;
+          } else {
+            return true;
+          }
+        });
+
+        if (!uniqueQuery) {
+          return;
+        }
+
+        // generate reportID from query object with the object-hash library
+        let reportID = hash(query);
+        this.activeReportIDs.push(reportID);
+        if (index === 0) this.activeReportID = reportID;
+
+        // initialize report object
+        state.reportData[reportID] = {
+          id: reportID,
+          occurrenceDataQuery: query,
+          taxonOccurrenceData: {},
+          occurrenceStatistics: {},
+          taxonOccurrenceStatistics: {},
+          taxonSpecificStatistics: {},
+        };
+
+        // get occurrence data from WerBeo through floralink server
+        let resOccurrenceData = await this.$axios.post(
+          "/occurrencedata",
+          query
+        );
+        const occurrenceData = resOccurrenceData.data.occurrences;
+        state.occurrenceData["werbeo"] = Object.assign(
+          state.occurrenceData["werbeo"] || {},
+          occurrenceData
+        );
+        this.statusMessage(
+          `Erfassungsdaten für Abfrage ${index + 1} empfangen`
+        );
+
+        // convert occurrenceData to taxonOccurrenceData for later analysis
+        const taxonOccurrenceData =
+          floralink.convertToTaxonOccurrenceData(occurrenceData);
+        state.reportData[reportID].taxonOccurrenceData = taxonOccurrenceData;
+
+        // calculate statistics with floralink
+        state.reportData[reportID].occurrenceStatistics =
+          floralink.getOccurrenceStatistics(occurrenceData);
+        state.reportData[reportID].taxonOccurrenceStatistics =
+          floralink.getTaxonOccurrenceStatistics(
+            taxonOccurrenceData,
+            occurrenceData
+          );
+        this.statusMessage(
+          `Statistiken für Erfassungsdaten der Abfrage ${index + 1} berechnet`
+        );
+
+        let taxonIDs = Object.keys(resOccurrenceData.data.taxa);
+
+        // request taxon reference data for occurring taxa
+        let resTaxonReference = await this.$axios.post("/taxonreference", {
+          taxonIDs,
+          taxonReferencePluginID,
+        });
+        state.taxonReference[taxonReferencePluginID] = Object.assign(
+          state.taxonReference[taxonReferencePluginID] || {},
+          resTaxonReference.data.taxa
+        );
+
+        // request taxon specific data for occurring taxa
+        Object.values(state.taxonSpecificPlugins).forEach(
+          (taxonSpecificPlugin) => {
+            let taxonSpecificQuery = {
+              taxonIDs,
+              taxonSpecificPluginID: taxonSpecificPlugin.name,
+              taxonReferencePluginID,
+            };
+
+            // initialize / reset taxonSpecificStatistics
+            state.reportData[reportID].taxonSpecificStatistics = {};
+
+            (async () => {
+              let resTaxonSpecific = await this.$axios.post(
+                "/taxonspecific",
+                taxonSpecificQuery
+              );
+              state.taxonSpecific[taxonSpecificPlugin.name] = Object.assign(
+                state.taxonSpecific[taxonSpecificPlugin.name] || {},
+                resTaxonSpecific.data.taxa
+              );
+              this.statusMessage(
+                `Taxonspezifische Daten (${
+                  taxonSpecificPlugin.name
+                }) für Abfrage ${index + 1} empfangen`
+              );
+
+              // calculate statistics for taxon specific data
+              state.reportData[reportID].taxonSpecificStatistics[
+                taxonSpecificPlugin.name
+              ] = floralink.getTaxonSpecificStatistics(
+                state.taxonSpecificPlugins[taxonSpecificPlugin.name],
+                resTaxonSpecific.data
+              );
+
+              this.statusMessage(
+                `Statistiken für taxonspezifische Daten (${
+                  taxonSpecificPlugin.name
+                }) der Abfrage ${index + 1} berechnet`
+              );
+            })();
+          }
+        );
+      });
+    },
+  },
+};
 </script>
 
-<style scoped>
-.imgflex {
-  position: relative;
-  display: flex;
+<!-- generalize as component -->
+<style>
+.tab-container {
   width: 100%;
+  display: flex;
   justify-content: center;
+  padding-bottom: 40px;
 }
-.imgflex > img {
-  flex: 20%;
-  max-width: 30%;
-  align-self: center;
-  border: 5px solid var(--grey1);
-  margin: 10px;
+.tab-button {
+  background-color: var(--green2);
+  padding: 10px;
+  margin: 5px;
+  transition: 0.2s;
+  cursor: pointer;
+  flex: 30%;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+.tab-button:hover {
+  background-color: var(--green1);
+}
+
+.tab-button.active {
+  background-color: var(--grey1);
+  cursor: unset;
+  flex: 80%;
 }
 </style>

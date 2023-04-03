@@ -11,7 +11,6 @@ import TheHeader from "./components/TheHeader.vue";
 import TheFooter from "./components/TheFooter.vue";
 import ButtonToTop from "./components/TheButtonToTop.vue";
 import TheQuery from "./components/Query/TheQuery.vue";
-import TheCiteMe from "./components/TheCiteMe.vue";
 import LayoutPanel from "./components/LayoutPanel.vue";
 import TableBase from "./components/TableBase.vue";
 import InfoToolTip from "./components/InfoToolTip.vue";
@@ -28,7 +27,6 @@ app
   .component("TheFooter", TheFooter)
   .component("ButtonToTop", ButtonToTop)
   .component("TheQuery", TheQuery)
-  .component("TheCiteMe", TheCiteMe)
   .component("LayoutPanel", LayoutPanel)
   .component("TableBase", TableBase)
   .component("InfoToolTip", InfoToolTip)
