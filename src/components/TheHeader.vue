@@ -10,12 +10,10 @@
           <code id="version">1.0.0-alpha.2</code>
         </td>
         <td class="right">
-          <a href="https://docs.flora-link.de/wiki" target="_blank"
+          <a href="https://flora-link.de/info" target="_blank"
             >Wissenssammlung 🡭</a
           >
-          <a href="https://docs.flora-link.de/floralink" target="_blank"
-            >Handbuch 🡭</a
-          >
+          <a href="https://flora-link.de/docs" target="_blank">Handbuch 🡭</a>
         </td>
       </tr>
     </table>
