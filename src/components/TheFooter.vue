@@ -10,7 +10,7 @@
       &nbsp;•&nbsp;
       <router-link to="/impressum">Impressum</router-link>
       &nbsp;•&nbsp;
-      <a href="https://docs.flora-link.de/floralink/abfrage/datenquellen/"
+      <a href="https://flora-link.de/docs/abfrage/datenquellen/"
         >Datenquellen 🡭</a
       >
     </p>
