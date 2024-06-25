@@ -59,7 +59,18 @@
 </template>
 
 <script>
+// import Floralink and its plugins
+// @ts-ignore
 import * as floralink from "@floralink/core";
+import {
+  werbeo,
+  germanslDB,
+  ellenbergDB,
+  rotelistemvDB,
+  fukarekhenkerDB,
+  // @ts-ignore
+} from "@floralink/databases";
+
 import hash from "object-hash";
 import state from "../state.js";
 
@@ -72,6 +83,13 @@ import TheIntro from "../components/TheIntro.vue";
 import TheQuery from "../components/Query/TheQuery.vue";
 import ReportView from "../components/Report/ReportView.vue";
 import router from "../router";
+
+// initialize taxon specific databases
+floralink.initializeDatabase(germanslDB);
+floralink.initializeDatabase(ellenbergDB);
+floralink.initializeDatabase(rotelistemvDB);
+floralink.initializeDatabase(fukarekhenkerDB);
+floralink.initializeDatabase(werbeo);
 
 export default {
   name: "Report",
@@ -168,8 +186,8 @@ export default {
         };
 
         // get occurrence data from WerBeo through floralink server
-        let resOccurrenceData = await this.$axios.post(
-          "/occurrencedata",
+        let resOccurrenceData = await floralink.getOccurrenceData(
+          werbeo,
           query
         );
         const occurrenceData = resOccurrenceData.data.occurrences;
@@ -201,10 +219,10 @@ export default {
         let taxonIDs = Object.keys(resOccurrenceData.data.taxa);
 
         // request taxon reference data for occurring taxa
-        let resTaxonReference = await this.$axios.post("/taxonreference", {
+        let resTaxonReference = floralink.getTaxonDataByIDs(
           taxonIDs,
-          taxonReferencePluginID,
-        });
+          taxonReferencePluginID
+        );
         state.taxonReference[taxonReferencePluginID] = Object.assign(
           state.taxonReference[taxonReferencePluginID] || {},
           resTaxonReference.data.taxa
@@ -222,35 +240,33 @@ export default {
             // initialize / reset taxonSpecificStatistics
             state.reportData[reportID].taxonSpecificStatistics = {};
 
-            (async () => {
-              let resTaxonSpecific = await this.$axios.post(
-                "/taxonspecific",
-                taxonSpecificQuery
-              );
-              state.taxonSpecific[taxonSpecificPlugin.name] = Object.assign(
-                state.taxonSpecific[taxonSpecificPlugin.name] || {},
-                resTaxonSpecific.data.taxa
-              );
-              this.statusMessage(
-                `Taxonspezifische Daten (${
-                  taxonSpecificPlugin.name
-                }) für Abfrage ${index + 1} empfangen`
-              );
-
-              // calculate statistics for taxon specific data
-              state.reportData[reportID].taxonSpecificStatistics[
+            let resTaxonSpecific = floralink.getTaxonDataByIDs(
+              taxonSpecificQuery.taxonIDs,
+              taxonSpecificQuery.taxonSpecificPluginID
+            );
+            state.taxonSpecific[taxonSpecificPlugin.name] = Object.assign(
+              state.taxonSpecific[taxonSpecificPlugin.name] || {},
+              resTaxonSpecific.data.taxa
+            );
+            this.statusMessage(
+              `Taxonspezifische Daten (${
                 taxonSpecificPlugin.name
-              ] = floralink.getTaxonSpecificStatistics(
-                state.taxonSpecificPlugins[taxonSpecificPlugin.name],
-                resTaxonSpecific.data
-              );
+              }) für Abfrage ${index + 1} empfangen`
+            );
 
-              this.statusMessage(
-                `Statistiken für taxonspezifische Daten (${
-                  taxonSpecificPlugin.name
-                }) der Abfrage ${index + 1} berechnet`
-              );
-            })();
+            // calculate statistics for taxon specific data
+            state.reportData[reportID].taxonSpecificStatistics[
+              taxonSpecificPlugin.name
+            ] = floralink.getTaxonSpecificStatistics(
+              state.taxonSpecificPlugins[taxonSpecificPlugin.name],
+              resTaxonSpecific.data
+            );
+
+            this.statusMessage(
+              `Statistiken für taxonspezifische Daten (${
+                taxonSpecificPlugin.name
+              }) der Abfrage ${index + 1} berechnet`
+            );
           }
         );
       });
