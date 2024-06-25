@@ -8,7 +8,10 @@
   />
 
   <!-- STATUS MESSAGES WHILE PROCESSING QUERIES TO REPORTS -->
-  <LayoutPanel v-if="(getStatus === 'loading') | 'ready'" title="Abfrage">
+  <LayoutPanel
+    v-if="getStatus === 'loading' || getStatus === 'ready'"
+    title="Abfrage"
+  >
     <InfoBox showTitle="false">
       Das kann bei der ersten Abfrage einen Moment dauern, weil der Server nach
       15 min Inaktivität schläft und erst wieder hochfahren muss.
