@@ -8,10 +8,7 @@
   />
 
   <!-- STATUS MESSAGES WHILE PROCESSING QUERIES TO REPORTS -->
-  <LayoutPanel
-    v-if="getStatus === 'loading' || getStatus === 'ready'"
-    title="Abfrage"
-  >
+  <LayoutPanel v-if="getStatus === 'loading'" title="Abfrage">
     <InfoBox showTitle="false">
       Das kann bei der ersten Abfrage einen Moment dauern, weil der Server nach
       15 min Inaktivität schläft und erst wieder hochfahren muss.
@@ -228,6 +225,9 @@ export default {
           resTaxonReference.taxa
         );
 
+        // initialize / reset taxonSpecificStatistics
+        state.reportData[reportID].taxonSpecificStatistics = {};
+
         // request taxon specific data for occurring taxa
         Object.values(state.taxonSpecificPlugins).forEach(
           (taxonSpecificPlugin) => {
@@ -236,9 +236,6 @@ export default {
               taxonSpecificPluginID: taxonSpecificPlugin.name,
               taxonReferencePluginID,
             };
-
-            // initialize / reset taxonSpecificStatistics
-            state.reportData[reportID].taxonSpecificStatistics = {};
 
             let resTaxonSpecific = floralink.getTaxonDataByIDs(
               taxonSpecificQuery.taxonIDs,
@@ -258,7 +255,7 @@ export default {
             state.reportData[reportID].taxonSpecificStatistics[
               taxonSpecificPlugin.name
             ] = floralink.getTaxonSpecificStatistics(
-              state.taxonSpecificPlugins[taxonSpecificPlugin.name],
+              taxonSpecificPlugin,
               resTaxonSpecific
             );
 
