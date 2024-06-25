@@ -189,7 +189,8 @@ export default {
           werbeo,
           query
         );
-        const occurrenceData = resOccurrenceData.data.occurrences;
+
+        const occurrenceData = resOccurrenceData.occurrences;
         state.occurrenceData["werbeo"] = Object.assign(
           state.occurrenceData["werbeo"] || {},
           occurrenceData
@@ -215,7 +216,7 @@ export default {
           `Statistiken für Erfassungsdaten der Abfrage ${index + 1} berechnet`
         );
 
-        let taxonIDs = Object.keys(resOccurrenceData.data.taxa);
+        let taxonIDs = Object.keys(resOccurrenceData.taxa);
 
         // request taxon reference data for occurring taxa
         let resTaxonReference = floralink.getTaxonDataByIDs(
@@ -224,7 +225,7 @@ export default {
         );
         state.taxonReference[taxonReferencePluginID] = Object.assign(
           state.taxonReference[taxonReferencePluginID] || {},
-          resTaxonReference.data.taxa
+          resTaxonReference.taxa
         );
 
         // request taxon specific data for occurring taxa
@@ -245,7 +246,7 @@ export default {
             );
             state.taxonSpecific[taxonSpecificPlugin.name] = Object.assign(
               state.taxonSpecific[taxonSpecificPlugin.name] || {},
-              resTaxonSpecific.data.taxa
+              resTaxonSpecific.taxa
             );
             this.statusMessage(
               `Taxonspezifische Daten (${
@@ -258,7 +259,7 @@ export default {
               taxonSpecificPlugin.name
             ] = floralink.getTaxonSpecificStatistics(
               state.taxonSpecificPlugins[taxonSpecificPlugin.name],
-              resTaxonSpecific.data
+              resTaxonSpecific
             );
 
             this.statusMessage(
