@@ -10,11 +10,11 @@ const router = createRouter({
       name: "Home",
       component: Home,
     },
-    {
-      path: "/impressum",
-      name: "Impressum",
-      component: () => import("../views/Impressum.vue"),
-    },
+    // {
+    //   path: "/impressum",
+    //   name: "Impressum",
+    //   component: () => import("../views/Impressum.vue"),
+    // },
   ],
   scrollBehavior(to) {
     // Enable scrolling to #anchors
