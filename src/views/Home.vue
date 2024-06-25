@@ -82,7 +82,6 @@ import InfoBox from "../components/InfoBox.vue";
 import TheIntro from "../components/TheIntro.vue";
 import TheQuery from "../components/Query/TheQuery.vue";
 import ReportView from "../components/Report/ReportView.vue";
-import router from "../router";
 
 // initialize taxon specific databases
 floralink.initializeDatabase(germanslDB);
