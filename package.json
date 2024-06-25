@@ -14,7 +14,6 @@
     "@floralink/core": "^0.1.3",
     "@floralink/databases": "^0.1.6",
     "@floralink/plugins": "^0.2.1",
-    "axios": "^1.7.2",
     "object-hash": "^3.0.0",
     "plotly.js": "^2.33.0",
     "plotly.js-locales": "^2.33.0",
