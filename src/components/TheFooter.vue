@@ -6,7 +6,7 @@
       &nbsp;&nbsp;&nbsp;&nbsp;
       <a href="https://github.com/floralink/web">GitHub 🡭</a>
       &nbsp;•&nbsp;
-      <a href="mailto:info@flora-link.de">Kontakt</a>
+      <a href="mailto:info@schwince.de">Kontakt</a>
       &nbsp;•&nbsp;
       <router-link to="/impressum">Impressum</router-link>
       &nbsp;•&nbsp;
