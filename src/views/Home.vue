@@ -9,11 +9,6 @@
 
   <!-- STATUS MESSAGES WHILE PROCESSING QUERIES TO REPORTS -->
   <LayoutPanel v-if="getStatus === 'loading'" title="Abfrage">
-    <InfoBox showTitle="false">
-      Das kann bei der ersten Abfrage einen Moment dauern, weil der Server nach
-      15 min Inaktivität schläft und erst wieder hochfahren muss.
-    </InfoBox>
-
     <InfoBox title="Statusmeldungen">
       <template v-for="message in statusMessages" :key="message">
         {{ message }}<br />
