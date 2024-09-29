@@ -16,18 +16,18 @@
     "@floralink/databases": "^0.1.7",
     "@floralink/plugins": "^0.2.2",
     "object-hash": "^3.0.0",
-    "plotly.js": "^2.34.0",
-    "plotly.js-locales": "^2.34.0",
+    "plotly.js": "^2.35.2",
+    "plotly.js-locales": "^2.35.2",
     "uuid": "^10.0.0",
-    "vue": "^3.4.38",
-    "vue-router": "^4.4.3"
+    "vue": "^3.5.10",
+    "vue-router": "^4.4.5"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^5.1.2",
-    "eslint": "^9.9.0",
+    "@vitejs/plugin-vue": "^5.1.4",
+    "eslint": "^9.11.1",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-vue": "^9.27.0",
+    "eslint-plugin-vue": "^9.28.0",
     "prettier": "^3.3.3",
-    "vite": "^5.4.0"
+    "vite": "^5.4.8"
   }
 }
