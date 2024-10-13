@@ -1,0 +1,35 @@
+<template>
+  <TableBase
+    title="Abfragekriterien"
+    description="Kriterien und Metadaten der Abfrage"
+    :filename="`report-${reports.activeID}-query`"
+  >
+    <tr>
+      <th v-if="query.area.areaFormat === 'mtb'">TK 25 (MTB)</th>
+      <th v-else-if="query.area.areaFormat === 'wkt'">WKT-Shape</th>
+      <td>{{ query.area.areaValue }}</td>
+    </tr>
+    <tr>
+      <th>Zeitraum</th>
+      <td>{{ dateToString(query.period) }}</td>
+    </tr>
+    <tr>
+      <th>Erfassungsart</th>
+      <td>Floristische Kartierung</td>
+    </tr>
+    <tr>
+      <th>Datenquelle</th>
+      <td>Flora-MV</td>
+    </tr>
+    <tr>
+      <th>Stand der Abfrage</th>
+      <td>{{ new Date(query.creationDate).toLocaleString() }}</td>
+    </tr>
+  </TableBase>
+</template>
+
+<script setup lang="ts">
+const props = defineProps<{ reportID: string }>();
+const reports = useReportStore();
+const query = reports.reports[props.reportID].occurrenceDataQuery;
+</script>
