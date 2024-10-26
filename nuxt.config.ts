@@ -3,6 +3,13 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: "Floralink",
+      link: [
+        {
+          rel: "icon",
+          type: "image/png",
+          href: "/logo.svg",
+        },
+      ],
       htmlAttrs: {
         lang: "de",
       },
