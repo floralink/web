@@ -10,10 +10,17 @@
 // FROM_YEAR 	    Don't use, you always can use today as an end date
 // YEARS 	        An interval between tow years
 
-export function dateToString(date: { type: string; from: string; to: string }) {
+export function dateToString(
+  date: { type: string; from: string; to: string },
+  localeCode: string = "de-DE"
+) {
   switch (date.type) {
     case "DAY":
-      return new Date(date.from).toLocaleDateString();
+      return new Date(date.from).toLocaleDateString(localeCode, {
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      });
     case "DAYS":
       return `zwischen ${new Date(
         date.from
@@ -30,12 +37,11 @@ export function dateToString(date: { type: string; from: string; to: string }) {
     case "FROM_YEAR":
       return `seit ${new Date(date.from).getFullYear()}`;
     case "YEARS":
-      return `zwischen ${new Date(date.from).getFullYear()} und ${new Date(
+      return `von ${new Date(date.from).getFullYear()} bis ${new Date(
         date.to
       ).getFullYear()}`;
     default:
-      // return "Datum konnte nicht aufgelöst werden";
-      return `zwischen ${new Date(date.from).getFullYear()} und ${new Date(
+      return `von ${new Date(date.from).getFullYear()} bis ${new Date(
         date.to
       ).getFullYear()}`;
   }
