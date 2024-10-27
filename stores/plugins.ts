@@ -1,9 +1,24 @@
 import type { Reactive } from "vue";
-import type { IdKeyedObject } from "~/types/common";
+
+import {
+  germansl,
+  ellenberg,
+  fukarekhenker,
+  rotelistemv,
+} from "@floralink/plugins";
 
 export const usePluginStore = defineStore("plugins", () => {
-  const taxonReferencePlugins: Reactive<IdKeyedObject> = reactive({});
-  const taxonSpecificPlugins: Reactive<IdKeyedObject> = reactive({});
+  const taxonReferencePlugins: Reactive<IdKeyedObject> = reactive({ germansl });
+  const taxonSpecificPlugins: Reactive<IdKeyedObject> = reactive({
+    ellenberg,
+    rotelistemv,
+    fukarekhenker,
+  });
 
-  return { taxonReferencePlugins, taxonSpecificPlugins };
+  const route = useRoute();
+  const routeToPlugin = computed(
+    () => taxonSpecificPlugins[route.params.plugin as string]
+  );
+
+  return { taxonReferencePlugins, taxonSpecificPlugins, routeToPlugin };
 });

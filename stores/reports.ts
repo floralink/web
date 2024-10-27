@@ -1,13 +1,36 @@
 import type { Reactive } from "vue";
-import type { IdKeyedObject } from "~/types/common";
 
 export const useReportStore = defineStore("reports", () => {
   const reports: Reactive<IdKeyedObject> = reactive({});
-  const activeID: Ref<string | null> = ref(null);
+  const activeID: Ref<string | undefined> = ref(undefined);
 
+  const activeReport = computed(() =>
+    activeID.value ? reports[activeID.value] : undefined
+  );
   const activeQuery = computed(() =>
-    activeID.value ? reports[activeID.value].occurrenceDataQuery : null
+    activeID.value && reports[activeID.value]
+      ? reports[activeID.value].occurrenceDataQuery
+      : undefined
+  );
+  const activeTaxonCount = computed(() =>
+    activeID.value && reports[activeID.value]
+      ? reports[activeID.value].occurrenceStatistics.uniqueTaxaCount || 0
+      : 0
   );
 
-  return { reports, activeID, activeQuery };
+  const activeOccurrenceIDs = computed(() =>
+    Object.values(activeReport.value.taxonOccurrenceData).reduce(
+      (acc, taxonData) => acc.concat(taxonData.occurrenceIDs),
+      [] as string[]
+    )
+  );
+
+  return {
+    reports,
+    activeID,
+    activeReport,
+    activeQuery,
+    activeTaxonCount,
+    activeOccurrenceIDs,
+  };
 });
