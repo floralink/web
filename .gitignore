@@ -24,5 +24,5 @@ logs
 
 # Custom
 .archive
+.env
 TODO.md
-impressum.vue

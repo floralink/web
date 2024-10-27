@@ -24,5 +24,5 @@ export function printHTML(printHtml: string) {
 
   printer.document.close();
   printer.print();
-  // printer.close();
+  printer.close();
 }

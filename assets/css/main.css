@@ -1,0 +1,60 @@
+body {
+  font-family: "DM Sans", sans-serif;
+
+  background-color: rgb(243, 243, 243);
+  color: #636363;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: rgb(29, 29, 29);
+    color: #ccc;
+  }
+}
+
+/*************
+ * Typography
+ *************/
+
+h1,
+h2,
+h3 {
+  margin: 30px 0 10px 0;
+  text-align: center;
+}
+
+h1:first-child,
+h2:first-child {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: 2em;
+  font-weight: 700;
+  padding: 2rem;
+  border-bottom: 1px solid rgb(var(--color-gray-700) / 1);
+}
+
+h2 {
+  font-size: 1.4em;
+  font-weight: 500;
+
+  background-color: #52842c;
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+  color: white;
+}
+
+p {
+  font-weight: 300;
+  font-size: 1.05em;
+}
+
+b,
+strong {
+  font-weight: bold;
+}
+
+a {
+  color: #52842c;
+}
