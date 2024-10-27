@@ -1,23 +1,8 @@
-# Floralink Web
+# Floralink
 
-Web client application for linking and analyzing taxon specific data with plant occurrence data using Floralink Core. Built with Nuxt.
+Floralink is a web client application for linking and analyzing data of plant occurrences with that of taxon specific traits like Ellenberg indicator values or Red List classifications. Built with Nuxt and some amazing modules for it, alongside Pinia and Tailwind.
 
-The user interface as well as the documentation on the usage of Floralink Web are only available in German.
+![Screenshot of Floralink](.screenshots/3.0.0-alpha.2_eiv_boxplots.png)
 
-## Project setup
-
-```sh
-npm install
-```
-
-### Compiles and hot-reloads for development
-
-```sh
-npm run dev
-```
-
-### Compiles and minifies for production
-
-```sh
-npm run build
-```
+> [!NOTE]  
+> The user interface of Floralink is currently only available in German.
