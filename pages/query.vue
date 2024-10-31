@@ -1,25 +1,54 @@
 <script setup lang="ts">
-import { object, string, type InferType } from "yup";
+import { object, string, number } from "yup";
 
 definePageMeta({ layout: "navigation" });
 useHead({ title: "Abfrage" });
 
 const reports = useReportStore();
 
+// Schema
+
+const dateBeforeNow = {
+  // Yup test options for validating that a year is before or the same as the current year
+  name: "date-before-now",
+  message: "Das angegebene Datum darf nicht in der Zukunft liegen.",
+  test: (value: any) => !value || value <= new Date().getFullYear(),
+};
+
+const yearTypeErrorMessage = "Der angegebene Wert muss eine Zahl sein.";
+
 const schema = object({
   areaValue: string().matches(/^\d\d\d\d(\/\d)?\d?\d?$/g, {
     excludeEmptyString: true,
     message: "Ungültiges Format (siehe Hilfe)",
   }),
-  from: string(),
-  to: string(),
+  from: number()
+    .typeError(yearTypeErrorMessage)
+    .test(dateBeforeNow)
+    .test({
+      name: "after-from",
+      message: "Das Startdatum darf nicht hinter dem Enddatum liegen.",
+      test: (val, ctx) => !val || (ctx.parent.to && val <= ctx.parent.to),
+    }),
+  to: number()
+    .typeError(yearTypeErrorMessage)
+    .test(dateBeforeNow)
+    .test({
+      name: "after-from",
+      message: "Das Enddatum darf nicht vor dem Startdatum liegen.",
+      test: (val, ctx) => !val || (ctx.parent.from && val >= ctx.parent.from),
+    }),
 });
+
+// State
 
 const state = reactive({
   areaValue: "2350/4",
   from: "1990",
   to: "2019",
 });
+
+// Querying
 
 /**
  * Generates a query object with data provider ID, creation date, area, and period.
@@ -69,6 +98,7 @@ async function query() {
 }
 
 // TK25-Blattschnitte
+
 const tk25Label = computed(
   () =>
     getTK25Label(parseTK25String(state.areaValue)) || "Gib einen Wert ein..."
