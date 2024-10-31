@@ -35,6 +35,22 @@ defineProps<{
             type UTableProps = InstanceType<typeof UTable>["$props"];
     } -->
 
+    <template #median-header>
+      Median
+      <UPopover class="ml-2 inline-block align-bottom" mode="hover">
+        <UIcon name="i-heroicons-question-mark-circle" />
+
+        <template #panel>
+          <div class="p-3 max-w-96 font-normal">
+            <p>
+              Bei zwei Werten in der Mitte wird aus den beiden der arithmetische
+              Mittelwert berechnet.
+            </p>
+          </div>
+        </template>
+      </UPopover>
+    </template>
+
     <template #n-header>
       Ordinale Werte
       <UPopover class="ml-2 inline-block align-bottom" mode="hover">
