@@ -4,6 +4,8 @@ import { object, string, type InferType } from "yup";
 definePageMeta({ layout: "navigation" });
 useHead({ title: "Abfrage" });
 
+const reports = useReportStore();
+
 const schema = object({
   areaValue: string().matches(/^\d\d\d\d(\/\d)?\d?\d?$/g, {
     excludeEmptyString: true,
@@ -173,21 +175,23 @@ const tk25Label = computed(
           >Abfrage durchführen</UButton
         >
 
-        <UDivider class="my-4" label="ODER" />
+        <template v-if="!reports.activeID">
+          <UDivider class="my-4" label="ODER" />
 
-        <UButton
-          icon="i-heroicons-sparkles"
-          class="justify-center"
-          size="lg"
-          @click="
-            () => {
-              loadExampleData();
-              navigateTo('/report/occurrences/statistics');
-            }
-          "
-        >
-          Beispieldaten laden
-        </UButton>
+          <UButton
+            icon="i-heroicons-sparkles"
+            class="justify-center"
+            size="lg"
+            @click="
+              () => {
+                loadExampleData();
+                navigateTo('/report/occurrences/statistics');
+              }
+            "
+          >
+            Beispieldaten laden
+          </UButton>
+        </template>
       </UForm>
     </div>
   </template>
