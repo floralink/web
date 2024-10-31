@@ -78,7 +78,6 @@ const tk25Label = computed(
 <template>
   <template v-if="queryStatus === 'loading'">
     <div class="flex flex-col justify-center w-full">
-      <USpinner size="xl" />
       <UProgress animation="carousel" />
       <UAlert
         class="mt-4"
