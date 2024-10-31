@@ -179,7 +179,12 @@ const tk25Label = computed(
           icon="i-heroicons-sparkles"
           class="justify-center"
           size="lg"
-          @click="loadExampleData()"
+          @click="
+            () => {
+              loadExampleData();
+              navigateTo('/report/occurrences/statistics');
+            }
+          "
         >
           Beispieldaten laden
         </UButton>
