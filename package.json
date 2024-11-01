@@ -28,18 +28,12 @@
     "pinia": "^2.2.4",
     "plotly.js-dist": "^2.35.2",
     "plotly.js-locales": "^2.35.2",
-    "uuid": "^10.0.0",
     "vue": "^3.5.12",
     "vue-router": "^4.4.5",
     "yup": "^1.4.0"
   },
   "devDependencies": {
     "@types/object-hash": "^3.0.6",
-    "@vitejs/plugin-vue": "^5.1.4",
-    "eslint": "^9.13.0",
-    "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-vue": "^9.29.1",
-    "prettier": "^3.3.3",
     "vite": "^5.4.10"
   }
 }
