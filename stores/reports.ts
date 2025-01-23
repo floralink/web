@@ -7,10 +7,8 @@ export const useReportStore = defineStore("reports", () => {
   const activeReport = computed(() =>
     activeID.value ? reports[activeID.value] : undefined
   );
-  const activeQuery = computed(() =>
-    activeID.value && reports[activeID.value]
-      ? reports[activeID.value].occurrenceDataQuery
-      : undefined
+  const activeQuery = computed(
+    () => reports[activeID.value]?.occurrenceDataQuery
   );
   const activeTaxonCount = computed(() =>
     activeID.value && reports[activeID.value]
