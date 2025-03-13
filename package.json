@@ -20,7 +20,7 @@
     "@iconify-json/heroicons": "^1.2.2",
     "@nuxt/fonts": "^0.11.0",
     "@nuxt/ui": "^2.21.0",
-    "@nuxtjs/seo": "^2.0.0-rc.23",
+    "@nuxtjs/seo": "^3.0.0",
     "@pinia/nuxt": "^0.10.1",
     "@vueuse/nuxt": "^13.0.0",
     "nuxt": "^3.15.4",
