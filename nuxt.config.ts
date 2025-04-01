@@ -3,13 +3,7 @@ export default defineNuxtConfig({
   compatibilityDate: "2024-10-12",
   css: ["~/assets/css/main.css"],
   devtools: { enabled: true },
-  modules: [
-    "@pinia/nuxt",
-    "@nuxt/ui",
-    "@nuxt/fonts",
-    "@vueuse/nuxt",
-    "@nuxtjs/seo",
-  ],
+  modules: ["@pinia/nuxt", "@nuxt/ui", "@nuxt/fonts", "@vueuse/nuxt", "@nuxtjs/seo", "nuxt-security"],
   runtimeConfig: {
     public: {
       imprintName: "",
