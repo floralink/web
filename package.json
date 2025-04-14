@@ -18,15 +18,15 @@
     "@floralink/databases": "^0.1.7",
     "@floralink/plugins": "^0.2.2",
     "@iconify-json/heroicons": "^1.2.2",
-    "@nuxt/fonts": "^0.11.0",
+    "@nuxt/fonts": "^0.11.1",
     "@nuxt/ui": "^2.21.1",
-    "@nuxtjs/seo": "^3.0.1",
-    "@pinia/nuxt": "^0.10.1",
-    "@vueuse/nuxt": "^13.0.0",
+    "@nuxtjs/seo": "^3.0.2",
+    "@pinia/nuxt": "^0.11.0",
+    "@vueuse/nuxt": "^13.1.0",
     "nuxt": "^3.16.2",
     "nuxt-security": "^2.2.0",
     "object-hash": "^3.0.0",
-    "pinia": "^3.0.1",
+    "pinia": "^3.0.2",
     "plotly.js-dist": "^3.0.1",
     "plotly.js-locales": "^3.0.1",
     "vue": "^3.5.13",
@@ -35,6 +35,6 @@
   },
   "devDependencies": {
     "@types/object-hash": "^3.0.6",
-    "vite": "^6.2.4"
+    "vite": "^6.2.6"
   }
 }
