@@ -30,6 +30,9 @@ export default defineNuxtConfig({
           href: "/logo.svg",
         },
       ],
+      htmlAttrs: {
+        lang: "de",
+      },
     },
   },
 
