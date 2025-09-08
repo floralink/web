@@ -8,10 +8,13 @@
   "license": "MIT",
   "scripts": {
     "dev": "nuxt dev -o",
-    "generate": "node --max-old-space-size=4096 ./node_modules/nuxt/bin/nuxt.mjs generate",
-    "preview": "nuxt preview",
+    "host": "nuxt dev --host -o",
     "postinstall": "nuxt prepare",
-    "deps:update": "ncu -u && npm install && npm audit fix"
+    "generate": "node --max-old-space-size=4096 ./node_modules/nuxt/bin/nuxt.mjs generate",
+    "serve": "serve .output/public",
+    "deps:check": "npm-check-updates --interactive --format group && npm audit fix",
+    "deps:update": "npm-check-updates --format group --target minor -u --install always && npm audit fix && git commit -m \"chore(deps):update dependencies\"",
+    "deploy": "changelogen --noAuthors --release --no-tag && git push origin main"
   },
   "dependencies": {
     "@floralink/core": "^0.1.3",
