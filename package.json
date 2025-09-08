@@ -14,7 +14,7 @@
     "serve": "serve .output/public",
     "deps:check": "npm-check-updates --interactive --format group && npm audit fix",
     "deps:update": "npm-check-updates --format group --target minor -u --install always && npm audit fix",
-    "deploy": "changelogen --noAuthors --release --no-tag && git push origin main"
+    "release": "changelogen --noAuthors --release --no-tag"
   },
   "dependencies": {
     "@floralink/core": "^0.1.3",
