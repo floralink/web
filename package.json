@@ -2,7 +2,7 @@
   "name": "@floralink/web",
   "private": true,
   "type": "module",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "Web application for linking and analyzing taxon specific data with plant occurrence data",
   "author": "Vincent Ruge",
   "license": "MIT",
