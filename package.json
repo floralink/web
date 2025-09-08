@@ -13,7 +13,7 @@
     "generate": "node --max-old-space-size=4096 ./node_modules/nuxt/bin/nuxt.mjs generate",
     "serve": "serve .output/public",
     "deps:check": "npm-check-updates --interactive --format group && npm audit fix",
-    "deps:update": "npm-check-updates --format group --target minor -u --install always && npm audit fix && git commit -m \"chore(deps):update dependencies\"",
+    "deps:update": "npm-check-updates --format group --target minor -u --install always && npm audit fix",
     "deploy": "changelogen --noAuthors --release --no-tag && git push origin main"
   },
   "dependencies": {
