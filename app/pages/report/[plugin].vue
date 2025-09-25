@@ -40,8 +40,9 @@ const infoLinks = computed(() => {
 
   if (
     plugins.routeToPlugin &&
-    Object.values(plugins.routeToPlugin.properties).some(
-      (property) => property.description || property.possibleValues
+    Object.values(plugins.routeToPlugin.properties || []).some(
+      (property) =>
+        property?.description || property?.possibleValues || "Eigenschaft"
     )
   )
     links.push({

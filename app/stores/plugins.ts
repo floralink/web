@@ -15,10 +15,12 @@ export const usePluginStore = defineStore("plugins", () => {
     fukarekhenker,
   });
 
-  const route = useRoute();
-  const routeToPlugin = computed(
-    () => taxonSpecificPlugins[route.params.plugin as string]
-  );
+  // const route = useRoute();
+  // const routeToPlugin = computed(
+  //   () => taxonSpecificPlugins[route.params.plugin as string]
+  // );
+  // TODO: bugfixing
+  const routeToPlugin = taxonSpecificPlugins["ellenberg"];
 
   return { taxonReferencePlugins, taxonSpecificPlugins, routeToPlugin };
 });
