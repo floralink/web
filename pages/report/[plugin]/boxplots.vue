@@ -3,8 +3,10 @@ const plugins = usePluginStore();
 const reports = useReportStore();
 
 const plugin = computed(() => plugins.routeToPlugin);
-const statistics = computed(
-  () => reports.activeReport.taxonSpecificStatistics[plugin.value.name]
+const statistics = computed(() =>
+  plugin
+    ? reports.activeReport.taxonSpecificStatistics[plugin.value.name]
+    : undefined
 );
 </script>
 
