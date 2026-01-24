@@ -36,6 +36,8 @@
     "yup": "1.7.1"
   },
   "devDependencies": {
-    "@types/object-hash": "^3.0.6"
+    "@types/object-hash": "^3.0.6",
+    "changelogen": "^0.6.2",
+    "npm-check-updates": "^19.3.1"
   }
 }
