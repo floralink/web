@@ -1,5 +1,11 @@
 # Changelog
 
+## v3.3.2
+
+### 🩹 Fixes
+
+- **title**: Repair page title template
+
 ## v3.3.1
 
 ### 🩹 Fixes
