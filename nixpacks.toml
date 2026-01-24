@@ -1,2 +1,2 @@
 [phases.setup]
-nixpkgsArchive = '51ad838b03a05b1de6f9f2a0fffecee64a9788ee' # Node 22.13.1
+nixpkgsArchive = 'ffeebf0acf3ae8b29f8c7049cd911b9636efd7e7' # Node 22.14.0 (unstable branch)
