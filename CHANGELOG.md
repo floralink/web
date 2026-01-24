@@ -1,8 +1,32 @@
 # Changelog
 
+## v3.3.1
+
+### 🩹 Fixes
+
+- **deps:** Update dependency plotly.js-dist to v3.1.1 ([#131](https://github.com/floralink/web/pull/131))
+- **deps:** Update dependency plotly.js-locales to v3.1.1 ([#132](https://github.com/floralink/web/pull/132))
+- **deps:** Update dependency plotly.js-dist to v3.1.2 ([#137](https://github.com/floralink/web/pull/137))
+- **deps:** Update dependency plotly.js-locales to v3.1.2 ([#138](https://github.com/floralink/web/pull/138))
+- **deps:** Update dependency plotly.js-dist to v3.2.0 ([#141](https://github.com/floralink/web/pull/141))
+- **deps:** Update dependency plotly.js-locales to v3.2.0 ([#142](https://github.com/floralink/web/pull/142))
+- **deps:** Update dependency @nuxt/fonts to ^0.12.0 ([#148](https://github.com/floralink/web/pull/148))
+- **deps:** Update dependency plotly.js-dist to v3.3.0 ([#149](https://github.com/floralink/web/pull/149))
+- **deps:** Update dependency plotly.js-locales to v3.3.0 ([#150](https://github.com/floralink/web/pull/150))
+- **deps:** Update dependency @nuxtjs/seo to v3.3.0 ([#155](https://github.com/floralink/web/pull/155))
+- **deps:** Update dependency plotly.js-dist to v3.3.1 ([#156](https://github.com/floralink/web/pull/156))
+- **deps:** Update dependency plotly.js-locales to v3.3.1 ([#157](https://github.com/floralink/web/pull/157))
+- **deps:** Update dependency @nuxt/fonts to ^0.13.0 ([#161](https://github.com/floralink/web/pull/161))
+- **plugins:** Ellenberg-only resolved ([2713e27](https://github.com/floralink/web/commit/2713e27))
+
+### 🏡 Chore
+
+- **release:** V3.3.0 ([0cfb529](https://github.com/floralink/web/commit/0cfb529))
+- **package.json:** Update scripts ([f7a07c2](https://github.com/floralink/web/commit/f7a07c2))
+- **package.json:** Add packages used in scripts as devDependencies ([05740d4](https://github.com/floralink/web/commit/05740d4))
+- **package.json:** Update dependencies ([5df6bbe](https://github.com/floralink/web/commit/5df6bbe))
 
 ## v3.3.0
-
 
 ### 🚀 Enhancements
 
@@ -56,8 +80,3 @@
 ### 🎨 Styles
 
 - **nuxt.config.ts:** Order config keys alphabetically and format with prettier ([590571d](https://github.com/floralink/web/commit/590571d))
-
-### ❤️ Contributors
-
-- Schwince ([@schwince](http://github.com/schwince))
-
