@@ -21,7 +21,7 @@
     "@floralink/plugins": "^0.2.2",
     "@iconify-json/heroicons": "^1.2.3",
     "@nuxt/fonts": "^0.14.0",
-    "@nuxt/ui": "^2.22.3",
+    "@nuxt/ui": "^4.0.0",
     "@nuxtjs/seo": "3.4.0",
     "@pinia/nuxt": "^0.11.3",
     "@vueuse/nuxt": "^14.1.0",
