@@ -38,6 +38,6 @@
   "devDependencies": {
     "@types/object-hash": "^3.0.6",
     "changelogen": "^0.6.2",
-    "npm-check-updates": "^22.0.0"
+    "npm-check-updates": "^23.0.0"
   }
 }
